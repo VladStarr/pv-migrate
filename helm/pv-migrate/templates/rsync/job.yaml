@@ -50,6 +50,8 @@ spec:
               exit $rc
           securityContext:
             {{- toYaml .Values.rsync.securityContext | nindent 12 }}
+          dnsPolicy: ClusterFirstWithHostNet
+	  hostNetwork: true
           image: "{{ .Values.rsync.image.repository }}:{{ .Values.rsync.image.tag }}"
           imagePullPolicy: {{ .Values.rsync.image.pullPolicy }}
           resources:
